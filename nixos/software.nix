@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ ... }: {
   services = {
     xserver = {
       enable = true;
@@ -12,15 +12,14 @@
 
   security.pam.services.swaylock = { };
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
+  programs.hyprland.enable = true;
 
   virtualisation.podman = {
     enable = true;
+    autoPrune.enable = true;
+    dockerSocket.enable = true;
     dockerCompat = true;
     defaultNetwork.settings.dns_enabled = true;
+    networkSocket.openFirewall = true;
   };
 }

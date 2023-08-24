@@ -7,6 +7,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,6 +24,7 @@
       nixosConfigurations.hp-elitebook = nixpkgs.lib.nixosSystem {
         inherit system;
         pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+        specialArgs = { inherit inputs; };
         modules = [
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager

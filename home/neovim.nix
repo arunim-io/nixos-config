@@ -9,9 +9,11 @@ let
     gcc
     trashy
     nodePackages.vscode-langservers-extracted
+    efm-langserver
     lua-language-server
     nodePackages.pyright
     ruff
+    ruff-lsp
     taplo
     nodePackages.svelte-language-server
     nodePackages.yaml-language-server
@@ -30,6 +32,7 @@ let
   ];
 in
 {
+  home.packages = packages;
   programs.neovim = {
     enable = true;
     package = neovim;

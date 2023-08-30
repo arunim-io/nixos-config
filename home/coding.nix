@@ -10,11 +10,13 @@
     nodePackages.pnpm
     lazygit
     gh
+    distrobox
   ];
 
   programs.direnv = {
     enable = true;
     enableFishIntegration = true;
     nix-direnv.enable = true;
+    config.warn_timeout = "100h";
   };
 }

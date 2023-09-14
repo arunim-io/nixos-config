@@ -3,6 +3,7 @@
     wezterm
     vscode-fhs
     tmux
+    zellij
     rustup
     poetry
     pipx

@@ -5,7 +5,6 @@ in
 {
   home.packages = with pkgs; [
     xdg-desktop-portal-hyprland
-    copyq
     hyprpicker
     blueman
     swaynotificationcenter
@@ -23,4 +22,7 @@ in
   ];
 
   programs.waybar.enable = true;
+
+  services.copyq.enable = true;
+
 }

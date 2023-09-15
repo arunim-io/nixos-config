@@ -1,11 +1,5 @@
 { ... }: {
-  imports = [
-    ./theming.nix
-    ./spotify.nix
-    ./hyprland.nix
-    ./neovim.nix
-    ./coding.nix
-  ];
+  imports = [ ./configs ./programs ];
 
   programs.home-manager.enable = true;
 

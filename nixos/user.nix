@@ -1,7 +1,7 @@
 { pkgs, ... }: {
-  environment = {
-    shells = with pkgs; [ bash fish ];
-    systemPackages = with pkgs; [ git wget python3 most gnumake gcc pulseaudio nettools inxi ];
+  environment = with pkgs; {
+    shells = [ bash fish ];
+    systemPackages = [ git wget most gnumake gcc pulseaudio nettools inxi ];
   };
 
   fonts = {
@@ -25,15 +25,10 @@
     packages = [
       firefox-bin
       zoom-us
-      xfce.thunar
-      xfce.thunar-archive-plugin
       uget
       stacer
       chezmoi
       starship
-      fastfetch
-      exa
-      ripgrep
       bottom
       rm-improved
       zoxide
@@ -41,7 +36,7 @@
       topgrade
       aria2
     ];
-    shell = pkgs.fish;
+    shell = fish;
   };
 
   programs.fish = {

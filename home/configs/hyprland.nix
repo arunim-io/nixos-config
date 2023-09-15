@@ -19,6 +19,8 @@ in
     rofi-wayland
     networkmanagerapplet
     grimblast
+    xfce.thunar
+    xfce.thunar-archive-plugin
   ];
 
   programs.waybar.enable = true;

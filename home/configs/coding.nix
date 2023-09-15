@@ -1,18 +1,21 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
     wezterm
-    vscode-fhs
     tmux
     zellij
     rustup
     poetry
-    pipx
     nodejs
     nodePackages.pnpm
     lazygit
     gh
     distrobox
   ];
+
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode-fhs;
+  };
 
   programs.direnv = {
     enable = true;

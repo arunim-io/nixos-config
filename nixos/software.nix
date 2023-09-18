@@ -1,13 +1,31 @@
-{ ... }: {
+{ pkgs, ... }: {
   services = {
     xserver = {
       enable = true;
-      displayManager.gdm.enable = true;
       layout = "us";
       xkbVariant = "";
     };
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+          user = "greeter";
+        };
+      };
+    };
     flatpak.enable = true;
     gnome.gnome-keyring.enable = true;
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   security.pam.services.swaylock = { };

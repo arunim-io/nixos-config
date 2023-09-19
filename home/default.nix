@@ -1,5 +1,5 @@
 { ... }: {
-  imports = [ ./configs ./programs ];
+  imports = [ ./modules ];
 
   programs.home-manager.enable = true;
 

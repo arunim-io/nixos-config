@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ./modules ];
+  imports = [ ./hardware-configuration.nix ./modules ../cachix.nix ];
 
   nix = {
     package = pkgs.nixFlakes;

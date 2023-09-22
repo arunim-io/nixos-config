@@ -11,8 +11,8 @@
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly = {
-      url = "github:neovim/neovim?dir=contrib";
+    neovim = {
+      url = "github:arunim-io/neovim-config";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify.url = "github:the-argus/spicetify-nix";

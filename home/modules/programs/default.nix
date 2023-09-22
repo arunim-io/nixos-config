@@ -1,4 +1,4 @@
 { ... }: {
-  imports = [ ./neovim.nix ./spotify.nix ];
+  imports = [ ./neovim ./spotify.nix ];
 }
 

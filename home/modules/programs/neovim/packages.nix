@@ -7,6 +7,8 @@ let
     lua-language-server
     nodePackages.pyright
     taplo
+    nodePackages.typescript-language-server
+    typescript
     nodePackages.svelte-language-server
     nodePackages.yaml-language-server
     nil

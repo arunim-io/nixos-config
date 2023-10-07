@@ -11,6 +11,7 @@
     packages = [
       firefox-bin
       zoom-us
+      discord
       uget
       stacer
       chezmoi

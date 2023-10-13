@@ -22,6 +22,7 @@
       bat
       topgrade
       aria2
+      nushell
     ];
     shell = fish;
   };

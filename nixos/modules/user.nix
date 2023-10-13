@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   environment = with pkgs; {
-    shells = [ bash fish ];
+    shells = [ bash fish nushell ];
     systemPackages = [ git wget most gnumake gcc pulseaudio nettools inxi ];
   };
 

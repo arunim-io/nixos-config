@@ -19,17 +19,22 @@
   };
 
   outputs = { nixpkgs, home-manager, spicetify, ... }@inputs:
-    let system = "x86_64-linux"; in {
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+      localPkgs = import ./pkgs { inherit pkgs; };
+    in
+    {
+      packages.${system} = localPkgs;
       nixosConfigurations.hp-elitebook = nixpkgs.lib.nixosSystem {
-        inherit system;
-        pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
+        inherit system pkgs;
         specialArgs = { inherit inputs; };
         modules = [
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = { inherit inputs localPkgs; };
               useGlobalPkgs = true;
               useUserPackages = true;
               users.arunim.imports = [ spicetify.homeManagerModule ./home ];
@@ -39,3 +44,4 @@
       };
     };
 }
+

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, localPkgs, ... }: {
   home.packages = with pkgs; [
     wezterm
     tmux
@@ -10,6 +10,7 @@
     lazygit
     gh
     distrobox
+    localPkgs.space-cli
   ];
 
   programs.vscode = {

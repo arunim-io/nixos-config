@@ -1,7 +1,7 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, localPkgs, ... }:
 let
   neovim = inputs.neovim.packages.${pkgs.system}.default;
-  packages = import ./packages.nix { inherit pkgs; };
+  packages = import ./packages.nix { inherit pkgs localPkgs; };
 in
 {
   home.packages = packages;

@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, localPkgs }:
 let
   core = with pkgs; [ git tree-sitter nodejs gcc ripgrep fd trashy ];
   language-servers = with pkgs; [
@@ -23,7 +23,8 @@ let
     shfmt
   ];
   linters = with pkgs; [
-    ruff-lsp
+    ruff
+    localPkgs.ruff-lsp
     dotenv-linter
     editorconfig-checker
     shellcheck

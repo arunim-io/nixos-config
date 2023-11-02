@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim = {
-      url = "github:arunim-io/neovim-config";
+      url = "github:arunim-io/neovim-config/old-v2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify.url = "github:the-argus/spicetify-nix";

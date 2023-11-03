@@ -1,13 +1,12 @@
-{ inputs, pkgs, localPkgs, ... }:
+{ pkgs, localPkgs, nvimPkgs, ... }:
 let
-  neovim = inputs.neovim.packages.${pkgs.system}.default;
   packages = import ./packages.nix { inherit pkgs localPkgs; };
 in
 {
   home.packages = packages;
   programs.neovim = {
     enable = true;
-    package = neovim;
+    package = nvimPkgs.default;
     extraPackages = packages;
     defaultEditor = true;
     viAlias = true;

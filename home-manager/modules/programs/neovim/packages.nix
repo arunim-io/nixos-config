@@ -3,7 +3,6 @@ let
   core = with pkgs; [ git tree-sitter nodejs gcc ripgrep fd trashy ];
   language-servers = with pkgs; [
     nodePackages.vscode-langservers-extracted
-    efm-langserver
     lua-language-server
     nodePackages.pyright
     taplo

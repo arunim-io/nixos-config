@@ -1,8 +1,4 @@
-{ inputs, pkgs, ... }:
-let
-  grimblast = inputs.hyprland-contrib.packages.${pkgs.system}.grimblast;
-in
-{
+{ pkgs, hyprlandContribPkgs, ... }: {
   home.packages = with pkgs; [
     xdg-desktop-portal-hyprland
     hyprpicker
@@ -18,7 +14,7 @@ in
     font-awesome
     rofi-wayland
     networkmanagerapplet
-    grimblast
+    hyprlandContribPkgs.grimblast
     xfce.thunar
     xfce.thunar-archive-plugin
   ];

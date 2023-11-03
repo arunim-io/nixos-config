@@ -18,27 +18,34 @@
     spicetify.url = "github:the-argus/spicetify-nix";
   };
 
-  outputs = { nixpkgs, home-manager, spicetify, ... }@inputs:
+  outputs = { nixpkgs, home-manager, spicetify, neovim, hyprland-contrib, ... }@inputs:
     let
       system = "x86_64-linux";
-      packages = import ./pkgs nixpkgs.legacyPackages.${system};
+      pkgs = nixpkgs.legacyPackages.${system};
+      localPkgs = import ./pkgs pkgs;
+      specialArgs = {
+        inherit inputs localPkgs;
+        hyprlandContribPkgs = hyprland-contrib.packages.${pkgs.system};
+        nvimPkgs = neovim.packages.${system};
+        spicetifyPkgs = spicetify.packages.${system}.default;
+      };
     in
     {
-      packages.${system} = packages;
+      packages.${system} = localPkgs;
       nixosConfigurations.hp-elitebook = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        inherit system specialArgs;
         modules = [
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-              extraSpecialArgs = {
-                inherit inputs;
-                localPkgs = packages;
-              };
+              extraSpecialArgs = specialArgs;
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.arunim.imports = [ spicetify.homeManagerModule ./home ];
+              users.arunim.imports = [
+                spicetify.homeManagerModule
+                ./home-manager/home.nix
+              ];
             };
           }
         ];

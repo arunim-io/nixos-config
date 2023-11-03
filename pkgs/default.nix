@@ -1,4 +1,4 @@
-{ pkgs }: {
-  space-cli = with pkgs; callPackage ./space-cli.nix { };
-  ruff-lsp = with pkgs; callPackage ./ruff-lsp.nix { };
+pkgs: with pkgs; {
+  space-cli = callPackage ./space-cli.nix { };
+  ruff-lsp = callPackage ./ruff-lsp.nix { };
 }

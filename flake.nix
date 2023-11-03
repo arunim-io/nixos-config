@@ -21,20 +21,21 @@
   outputs = { nixpkgs, home-manager, spicetify, ... }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
-      localPkgs = import ./pkgs { inherit pkgs; };
+      packages = import ./pkgs nixpkgs.legacyPackages.${system};
     in
     {
-      packages.${system} = localPkgs;
+      packages.${system} = packages;
       nixosConfigurations.hp-elitebook = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
         specialArgs = { inherit inputs; };
         modules = [
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
-              extraSpecialArgs = { inherit inputs localPkgs; };
+              extraSpecialArgs = {
+                inherit inputs;
+                localPkgs = packages;
+              };
               useGlobalPkgs = true;
               useUserPackages = true;
               users.arunim.imports = [ spicetify.homeManagerModule ./home ];

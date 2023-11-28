@@ -1,4 +1,4 @@
-{ lib, fetchFromGitHub, buildGoModule }: buildGoModule rec {
+{ lib, buildGoModule, fetchFromGitHub }: buildGoModule rec {
   pname = "space-cli";
   version = "0.4.2";
 
@@ -11,16 +11,15 @@
 
   vendorHash = "sha256-UL0igvXYAR33x9VpqcAhKgDLK3Ay0ZUFAK2lVEDFtTc=";
 
-
-  # installPhase = ''
-  #   runHook preInstall
-  #   install -Dm755 bin/space -t $out/bin
-  # '';
+  ldflags = [
+    "-X=github.com/deta/space/cmd/utils.SpaceVersion=${version}"
+  ];
 
   meta = with lib; {
-    description = " Deta Space CLI";
+    description = "Deta Space CLI";
     homepage = "https://deta.space/docs/en/build/fundamentals/space-cli";
     changelog = "https://github.com/deta/space-cli/releases/tag/v${version}";
     license = licenses.mit;
+    mainProgram = "space-cli";
   };
 }

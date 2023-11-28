@@ -1,6 +1,7 @@
 { pkgs, localPkgs, ... }: {
   home.packages = with pkgs; [
     wezterm
+    kitty
     tmux
     zellij
     rustup
@@ -11,6 +12,7 @@
     gh
     distrobox
     localPkgs.space-cli
+    localPkgs.djlint
   ];
 
   programs.vscode = {

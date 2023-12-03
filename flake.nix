@@ -9,12 +9,12 @@
     nixosConfigurations."hp-elitebook" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
-        ./configuration.nix
+        ./hosts/laptop
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.arunim = import ./home.nix;
+          home-manager.users.arunim = import ./home;
 
           # Optionally, use home-manager.extraSpecialArgs to pass
           # arguments to home.nix

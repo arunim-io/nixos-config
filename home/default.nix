@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./coding.nix ];
+  imports = [ ./coding.nix ./spotify.nix ];
 
   home.stateVersion = "23.11";
   home.username = "arunim";

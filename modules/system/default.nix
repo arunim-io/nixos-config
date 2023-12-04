@@ -1,7 +1,6 @@
 { ... }: {
   imports = [ ./boot.nix ./environment.nix ./font.nix ./locale.nix ./network.nix ./services.nix ./sound.nix ./user.nix ];
 
-  nixpkgs.config.allowUnfree = true;
   nix = {
     gc = {
       automatic = true;

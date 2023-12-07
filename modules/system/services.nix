@@ -6,8 +6,10 @@
     enable = true;
     openFirewall = true;
   };
+
   programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
+    pinentryFlavor = "gnome3";
   };
 }

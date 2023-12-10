@@ -7,6 +7,7 @@
     poetry
     nodejs_20
     corepack_20
+    nix-init
   ];
 
   programs = {

@@ -21,4 +21,6 @@
     enable = true;
     package = pkgs.firefox-bin;
   };
+
+  programs.ags.enable = true;
 }

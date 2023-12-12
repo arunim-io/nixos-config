@@ -7,6 +7,7 @@
     poetry
     nodejs_20
     corepack_20
+    bun
     nix-init
   ];
 
@@ -26,7 +27,9 @@
 
     vscode = {
       enable = true;
-      package = pkgs.vscode-fhs;
+      package = pkgs.vscode.fhs;
     };
+
+    neovim.enable = true;
   };
 }

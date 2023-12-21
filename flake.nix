@@ -14,29 +14,40 @@
     extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
 
-  outputs = { nixpkgs, home-manager, spicetify, ags, ... }: {
-    nixosConfigurations."hp-elitebook" = nixpkgs.lib.nixosSystem rec {
+  outputs = { nixpkgs, home-manager, spicetify, ags, ... }:
+    let
+      getPackages = pkgs: with pkgs; {
+        djlint = callPackage ./pkgs/djlint.nix { };
+      };
       system = "x86_64-linux";
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          (final: prev: {
-            inherit (spicetify.packages.${system}) spicetify;
-          })
+          (_: prev:
+            let packages = getPackages prev;
+            in {
+              inherit (spicetify.packages.${system}) spicetify;
+              inherit packages;
+            })
         ];
       };
-      modules = [
-        ./hosts/laptop
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.arunim.imports = [ spicetify.homeManagerModule ags.homeManagerModules.default ./home ];
-          };
-        }
-      ];
+    in
+    {
+      packages.${system} = getPackages pkgs;
+      nixosConfigurations."hp-elitebook" = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+        modules = [
+          ./hosts/laptop
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.arunim.imports = [ spicetify.homeManagerModule ags.homeManagerModules.default ./home ];
+            };
+          }
+        ];
+      };
     };
-  };
 }

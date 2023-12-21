@@ -5,6 +5,7 @@
     gh
     python312
     poetry
+    djlint
     nodejs_20
     corepack_20
     bun

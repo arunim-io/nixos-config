@@ -7,6 +7,10 @@
     };
     spicetify.url = "github:the-argus/spicetify-nix";
     ags.url = "github:Aylur/ags";
+    wezterm = {
+      url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -14,7 +18,7 @@
     extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
 
-  outputs = { nixpkgs, home-manager, spicetify, ags, ... }:
+  outputs = { nixpkgs, home-manager, spicetify, ags, wezterm, ... }:
     let
       getPackages = pkgs: with pkgs; {
         djlint = callPackage ./pkgs/djlint.nix { };
@@ -29,6 +33,7 @@
             in {
               inherit (spicetify.packages.${system}) spicetify;
               inherit packages;
+              wezterm = wezterm.packages.${system}.default;
             })
         ];
       };

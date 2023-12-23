@@ -10,6 +10,14 @@
     corepack_20
     bun
     nix-init
+    (fenix.stable.withComponents [
+      "cargo"
+      "clippy"
+      "rust-src"
+      "rustc"
+      "rustfmt"
+    ])
+    rust-analyzer-nightly
   ];
 
   programs = {

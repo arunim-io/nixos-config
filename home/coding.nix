@@ -2,6 +2,8 @@
   home.packages = with pkgs; [
     nil
     nixpkgs-fmt
+    lua-language-server
+    vscode-langservers-extracted
     gh
     python312
     poetry
@@ -10,6 +12,7 @@
     corepack_20
     bun
     nix-init
+    gcc
     (fenix.stable.withComponents [
       "cargo"
       "clippy"

@@ -23,4 +23,5 @@
   };
 
   programs.ags.enable = true;
+  programs.gBar.enable = true;
 }

@@ -6,7 +6,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     spicetify.url = "github:the-argus/spicetify-nix";
-    ags.url = "github:Aylur/ags";
     wezterm = {
       url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,6 +14,8 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    ags.url = "github:Aylur/ags";
+    gBar.url = "github:scorpion-26/gBar";
   };
 
   nixConfig = {
@@ -22,10 +23,11 @@
     extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
 
-  outputs = { nixpkgs, home-manager, spicetify, ags, wezterm, fenix, ... }:
+  outputs = { nixpkgs, home-manager, spicetify, ags, wezterm, fenix, gBar, ... }:
     let
       getPackages = pkgs: with pkgs; {
         djlint = callPackage ./pkgs/djlint.nix { };
+        wezterm = callPackage ./pkgs/wezterm { };
       };
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -54,7 +56,12 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.arunim.imports = [ spicetify.homeManagerModule ags.homeManagerModules.default ./home ];
+              users.arunim.imports = [
+                spicetify.homeManagerModule
+                ags.homeManagerModules.default
+                gBar.homeManagerModules.${system}.default
+                ./home
+              ];
               extraSpecialArgs = { inherit pkgs fenix; };
             };
           }

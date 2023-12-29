@@ -16,6 +16,10 @@
     };
     ags.url = "github:Aylur/ags";
     gBar.url = "github:scorpion-26/gBar";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   nixConfig = {
@@ -23,7 +27,7 @@
     extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
   };
 
-  outputs = { nixpkgs, home-manager, spicetify, ags, wezterm, fenix, gBar, ... }:
+  outputs = { nixpkgs, home-manager, spicetify, ags, wezterm, fenix, gBar, neovim-nightly-overlay, ... }:
     let
       getPackages = pkgs: with pkgs; {
         djlint = callPackage ./pkgs/djlint.nix { };
@@ -42,6 +46,7 @@
               wezterm = wezterm.packages.${system}.default;
             })
           fenix.overlays.default
+          neovim-nightly-overlay.overlay
         ];
       };
     in

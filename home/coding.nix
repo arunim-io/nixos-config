@@ -42,6 +42,11 @@
       package = pkgs.vscode.fhs;
     };
 
-    neovim.enable = true;
+    neovim = {
+      enable = true;
+      package = pkgs.neovim-nightly;
+      viAlias = true;
+      vimAlias = true;
+    };
   };
 }

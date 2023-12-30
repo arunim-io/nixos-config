@@ -4,6 +4,9 @@
     nixpkgs-fmt
     lua-language-server
     vscode-langservers-extracted
+    tree-sitter
+    fd
+    ripgrep
     gh
     python312
     poetry
@@ -13,6 +16,7 @@
     bun
     nix-init
     gcc
+    gnumake
     (fenix.stable.withComponents [
       "cargo"
       "clippy"

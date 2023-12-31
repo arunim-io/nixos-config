@@ -23,15 +23,17 @@
   };
 
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" ];
-    extra-trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
+    extra-substituters = [ "https://nix-community.cachix.org" "https://arunim-nixos-config.cachix.org" ];
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "arunim-nixos-config.cachix.org-1:OTRenitAelvEbzzVI589dV5QtvZf7JcLJLbf1proiiw="
+    ];
   };
 
   outputs = { nixpkgs, home-manager, spicetify, ags, wezterm, fenix, gBar, neovim-nightly-overlay, ... }:
     let
       getPackages = pkgs: with pkgs; {
         djlint = callPackage ./pkgs/djlint.nix { };
-        wezterm = callPackage ./pkgs/wezterm { };
       };
       system = "x86_64-linux";
       pkgs = import nixpkgs {

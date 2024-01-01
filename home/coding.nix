@@ -4,7 +4,23 @@
     nixpkgs-fmt
     lua-language-server
     vscode-langservers-extracted
+    nodePackages.bash-language-server
+    dockerfile-language-server-nodejs
+    nodePackages.pyright
+    ruff
+    ruff-lsp
+    typescript
+    nodePackages.svelte-language-server
+    nodePackages.typescript-language-server
+    nodePackages."@astrojs/language-server"
+    nodePackages."@tailwindcss/language-server"
     tree-sitter
+    nodePackages.prettier
+    taplo
+    shfmt
+    black
+    selene
+    stylua
     fd
     ripgrep
     gh
@@ -52,5 +68,10 @@
       viAlias = true;
       vimAlias = true;
     };
+  };
+
+  home.sessionVariables = {
+    PAGER = "nvim +Man!";
+    MANPAGER = "nvim +Man!";
   };
 }

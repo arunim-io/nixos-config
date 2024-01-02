@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     nil
     nixpkgs-fmt
+    statix
     lua-language-server
     vscode-langservers-extracted
     nodePackages.bash-language-server

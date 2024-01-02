@@ -74,5 +74,9 @@
           }
         ];
       };
+      templates.rust = {
+        path = ./templates/rust;
+        description = "A simple rust project with flake-parts support";
+      };
     };
 }

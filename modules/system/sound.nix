@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   sound.enable = true;
   security.rtkit.enable = true;
   services.pipewire = {

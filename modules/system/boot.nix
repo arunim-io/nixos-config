@@ -8,5 +8,6 @@ _: {
       efi.canTouchEfiVariables = true;
     };
     kernel.sysctl."vm.swappiness" = 10;
+    supportedFilesystems = [ "ntfs" ];
   };
 }

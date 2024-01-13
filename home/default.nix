@@ -23,8 +23,5 @@
       enable = true;
       package = pkgs.firefox-bin;
     };
-
-    ags.enable = true;
-    gBar.enable = true;
   };
 }

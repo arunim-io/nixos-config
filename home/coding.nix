@@ -34,6 +34,7 @@
     nix-init
     gcc
     gnumake
+    shellcheck
     (fenix.stable.withComponents [
       "cargo"
       "clippy"
@@ -48,6 +49,9 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
+      stdlib = ''
+        source ~/.config/direnv/load_poetry.sh
+      '';
     };
 
     git = {

@@ -14,8 +14,6 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ags.url = "github:Aylur/ags";
-    gBar.url = "github:scorpion-26/gBar";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -30,7 +28,7 @@
     ];
   };
 
-  outputs = { nixpkgs, home-manager, spicetify, ags, wezterm, fenix, gBar, neovim-nightly-overlay, ... }:
+  outputs = { nixpkgs, home-manager, spicetify, wezterm, fenix, neovim-nightly-overlay, ... }:
     let
       getPackages = pkgs: with pkgs; {
         djlint = callPackage ./pkgs/djlint.nix { };
@@ -65,8 +63,6 @@
               useUserPackages = true;
               users.arunim.imports = [
                 spicetify.homeManagerModule
-                ags.homeManagerModules.default
-                gBar.homeManagerModules.${system}.default
                 ./home
               ];
               extraSpecialArgs = { inherit pkgs fenix; };

@@ -14,6 +14,10 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    apm = {
+      url = "github:arunim-io/apm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +32,7 @@
     ];
   };
 
-  outputs = { nixpkgs, home-manager, spicetify, wezterm, fenix, neovim-nightly-overlay, ... }:
+  outputs = { nixpkgs, home-manager, spicetify, wezterm, fenix, neovim-nightly-overlay, apm, ... }:
     let
       getPackages = pkgs: with pkgs; {
         djlint = callPackage ./pkgs/djlint.nix { };
@@ -42,6 +46,7 @@
             let packages = getPackages prev;
             in {
               inherit (spicetify.packages.${system}) spicetify;
+              inherit (apm.packages.${system}) apm;
               inherit packages;
               wezterm = wezterm.packages.${system}.default;
             })

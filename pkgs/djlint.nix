@@ -1,13 +1,11 @@
-{ lib, python3, fetchFromGitHub }: with python3.pkgs; buildPythonApplication rec {
+{ lib, python313, fetchPypi }: with python313.pkgs; buildPythonApplication rec {
   pname = "djlint";
   version = "1.34.1";
   pyproject = true;
 
-  src = fetchFromGitHub {
-    owner = "Riverside-Healthcare";
-    repo = "djLint";
-    rev = "v${version}";
-    hash = "sha256-p9RIzX9zoZxBrhiNaIeCX9OgfQm/lXNwYsh6IcsnIVk=";
+  src = fetchPypi {
+    inherit pname version;
+    hash = "sha256-25P6AI0Z6q2wRU7fFwSTHRRGnUhQjaui35lBER9Ag0Y=";
   };
 
   nativeBuildInputs = [ poetry-core ];

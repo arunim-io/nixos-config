@@ -25,52 +25,47 @@
   };
 
   nixConfig = {
-    extra-substituters = [ "https://nix-community.cachix.org" "https://arunim-nixos-config.cachix.org" ];
+    extra-substituters = [
+      "https://nix-community.cachix.org"
+    ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "arunim-nixos-config.cachix.org-1:OTRenitAelvEbzzVI589dV5QtvZf7JcLJLbf1proiiw="
     ];
   };
 
-  outputs = { nixpkgs, home-manager, spicetify, wezterm, fenix, neovim-nightly-overlay, apm, ... }:
+  outputs = inputs:
     let
-      getPackages = pkgs: with pkgs; {
-        djlint = callPackage ./pkgs/djlint.nix { };
-      };
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
+      pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          (_: prev:
-            let packages = getPackages prev;
-            in {
-              inherit (spicetify.packages.${system}) spicetify;
-              inherit (apm.packages.${system}) apm;
-              inherit packages;
-              wezterm = wezterm.packages.${system}.default;
-            })
-          fenix.overlays.default
-          neovim-nightly-overlay.overlay
+          (_: prev: {
+            inherit (inputs.spicetify.packages.${system}) spicetify;
+            inherit (inputs.apm.packages.${system}) apm;
+            wezterm = inputs.wezterm.packages.${system}.default;
+            djlint = prev.callPackage ./pkgs/djlint.nix { };
+          })
+          inputs.fenix.overlays.default
+          inputs.neovim-nightly-overlay.overlay
         ];
       };
     in
     {
-      packages.${system} = getPackages pkgs;
-      nixosConfigurations."hp-elitebook" = nixpkgs.lib.nixosSystem {
+      nixosConfigurations."hp-elitebook" = inputs.nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         modules = [
           ./hosts/laptop
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users.arunim.imports = [
-                spicetify.homeManagerModule
+                inputs.spicetify.homeManagerModule
                 ./home
               ];
-              extraSpecialArgs = { inherit pkgs fenix; };
+              extraSpecialArgs = { inherit pkgs; };
             };
           }
         ];

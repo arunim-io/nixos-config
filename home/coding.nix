@@ -25,9 +25,9 @@
     stylua
     fd
     ripgrep
-    python312
-    poetry
-    djlint
+    python3
+    # poetry - TODO: Switch to pdm
+    # djlint
     nodejs_20
     corepack_20
     bun

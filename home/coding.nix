@@ -26,8 +26,6 @@
     fd
     ripgrep
     python3
-    # poetry - TODO: Switch to pdm
-    # djlint
     nodejs_20
     corepack_20
     bun

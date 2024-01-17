@@ -33,29 +33,43 @@
     ];
   };
 
-  outputs = inputs:
+  outputs = inputs@{ self, ... }:
     let
       system = "x86_64-linux";
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          (_: prev: {
-            inherit (inputs.spicetify.packages.${system}) spicetify;
-            inherit (inputs.apm.packages.${system}) apm;
-            wezterm = inputs.wezterm.packages.${system}.default;
-            djlint = prev.callPackage ./pkgs/djlint.nix { };
-          })
+          self.overlays.default
           inputs.fenix.overlays.default
           inputs.neovim-nightly-overlay.overlay
         ];
       };
     in
     {
+      overlays.default = final: prev: {
+        inherit (inputs.spicetify.packages.${system}) spicetify;
+        inherit (inputs.apm.packages.${system}) apm;
+        wezterm = inputs.wezterm.packages.${system}.default;
+      };
       nixosConfigurations."hp-elitebook" = inputs.nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         modules = [
           ./hosts/laptop
+          {
+            nix = {
+              gc = {
+                automatic = true;
+                dates = "weekly";
+                options = "--delete-older-than 7d";
+              };
+              settings = {
+                auto-optimise-store = true;
+                trusted-users = [ "arunim" ];
+                experimental-features = [ "nix-command" "flakes" ];
+              };
+            };
+          }
           inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {

@@ -5,6 +5,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland.url = "github:hyprwm/Hyprland";
     spicetify.url = "github:the-argus/spicetify-nix";
     wezterm = {
       url = "github:happenslol/wezterm/add-nix-flake?dir=nix";
@@ -27,9 +28,11 @@
   nixConfig = {
     extra-substituters = [
       "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org"
     ];
     extra-trusted-public-keys = [
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
 
@@ -50,6 +53,7 @@
       overlays.default = final: prev: {
         inherit (inputs.spicetify.packages.${system}) spicetify;
         inherit (inputs.apm.packages.${system}) apm;
+        hyprland-dev = inputs.hyprland.packages.${system}.hyprland;
         wezterm = inputs.wezterm.packages.${system}.default;
       };
       nixosConfigurations."hp-elitebook" = inputs.nixpkgs.lib.nixosSystem {

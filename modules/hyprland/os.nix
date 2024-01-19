@@ -3,7 +3,10 @@
   environment.systemPackages = with pkgs; [ polkit_gnome ];
 
   programs = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      package = pkgs.hyprland-dev;
+    };
 
     thunar = {
       enable = true;

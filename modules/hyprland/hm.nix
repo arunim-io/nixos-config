@@ -1,18 +1,13 @@
 { pkgs, ... }: {
+  imports = [ ./config ];
   home = {
     packages = with pkgs; [
       pavucontrol
-      dunst
-      networkmanagerapplet
       cliphist
       wl-clipboard
-      wlogout
-      playerctl
-      waybar
       kitty
       wezterm
       wofi
-      (pkgs.writeShellScriptBin "polkit-gnome-agent" "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1")
     ];
 
     pointerCursor = {
@@ -21,12 +16,6 @@
       size = 32;
       gtk.enable = true;
       x11.enable = true;
-    };
-
-    file.hypr = {
-      recursive = true;
-      source = ./config;
-      target = "./.config/hypr";
     };
   };
 

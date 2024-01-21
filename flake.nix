@@ -15,10 +15,6 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    apm = {
-      url = "github:arunim-io/apm";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -52,7 +48,6 @@
     {
       overlays.default = final: prev: {
         inherit (inputs.spicetify.packages.${system}) spicetify;
-        inherit (inputs.apm.packages.${system}) apm;
         hyprland-dev = inputs.hyprland.packages.${system}.hyprland;
         wezterm = inputs.wezterm.packages.${system}.default;
       };

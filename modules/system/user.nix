@@ -7,7 +7,7 @@
   users.users.arunim = {
     isNormalUser = true;
     description = "Mugdha Arunim Ahmed";
-    extraGroups = [ "networkmanager" "wheel" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "input" "libvirtd" ];
     shell = pkgs.fish;
   };
 

@@ -1,4 +1,4 @@
-{ ... }: {
+self: {
   imports = [
     ./bluetooth.nix
     ./boot.nix
@@ -6,7 +6,6 @@
     ./font.nix
     ./locale.nix
     ./network.nix
-    ./podman.nix
     ./services.nix
     ./sound.nix
     ./user.nix

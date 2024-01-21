@@ -1,3 +1,3 @@
-_: {
+self: {
   networking.networkmanager.enable = true;
 }

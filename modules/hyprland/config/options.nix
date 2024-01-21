@@ -15,7 +15,6 @@
       "QT_QPA_PLATFORM,wayland"
       "GDK_BACKEND,wayland"
       "GDK_SCALE,2"
-      "XCURSOR_SIZE,32"
     ];
 
     general = {

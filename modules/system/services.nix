@@ -1,13 +1,15 @@
-_: {
-  services.printing.enable = true;
-  services.flatpak.enable = true;
+self: {
+  services = {
+    printing.enable = true;
+    flatpak.enable = true;
 
-  services.openssh = {
-    enable = true;
-    openFirewall = true;
+    openssh = {
+      enable = true;
+      openFirewall = true;
+    };
+
+    gnome.gnome-keyring.enable = true;
   };
-
-  services.gnome.gnome-keyring.enable = true;
 
   programs.gnupg.agent = {
     enable = true;

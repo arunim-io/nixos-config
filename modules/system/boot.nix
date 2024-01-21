@@ -1,4 +1,4 @@
-_: {
+self: {
   boot = {
     loader = {
       systemd-boot = {

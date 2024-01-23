@@ -19,6 +19,7 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nvim.url = "github:arunim-io/nvim";
   };
 
   nixConfig = {
@@ -76,6 +77,7 @@
               useUserPackages = true;
               users.arunim.imports = [
                 inputs.spicetify.homeManagerModule
+                inputs.nvim.homeManagerModules.default
                 ./home
               ];
               extraSpecialArgs = { inherit pkgs; };

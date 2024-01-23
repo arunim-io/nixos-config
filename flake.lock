@@ -391,6 +391,21 @@
         "type": "github"
       }
     },
+    "nvim": {
+      "locked": {
+        "lastModified": 1706036486,
+        "narHash": "sha256-MTYDZGXlYZyOezbftUKAPpqmvwpGI91dhcT4Z1XGpDQ=",
+        "owner": "arunim-io",
+        "repo": "nvim",
+        "rev": "5739dbc7c1debd1470040588232944d363b146d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arunim-io",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fenix": "fenix",
@@ -398,6 +413,7 @@
         "hyprland": "hyprland",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixpkgs": "nixpkgs_2",
+        "nvim": "nvim",
         "spicetify": "spicetify",
         "wezterm": "wezterm"
       }

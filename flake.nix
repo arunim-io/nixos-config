@@ -85,9 +85,16 @@
           }
         ];
       };
-      templates.rust = {
-        path = ./templates/rust;
-        description = "A simple rust project with flake-parts support";
+      templates = {
+        default = self.templates.basic;
+        basic = {
+          path = ./templates/basic;
+          description = "A simple flake with flake-parts support";
+        };
+        rust = {
+          path = ./templates/rust;
+          description = "A simple rust project with flake-parts support";
+        };
       };
     };
 }

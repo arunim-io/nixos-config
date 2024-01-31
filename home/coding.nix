@@ -5,14 +5,6 @@
     nix-init
     gcc
     gnumake
-    (fenix.stable.withComponents [
-      "cargo"
-      "clippy"
-      "rust-src"
-      "rustc"
-      "rustfmt"
-    ])
-    rust-analyzer-nightly
   ];
 
   programs = {
@@ -25,10 +17,5 @@
       enable = true;
       package = pkgs.neovim-nightly;
     };
-  };
-
-  home.sessionVariables = {
-    PAGER = "nvim +Man!";
-    MANPAGER = "nvim +Man!";
   };
 }

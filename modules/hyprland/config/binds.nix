@@ -1,8 +1,5 @@
 { pkgs, ... }:
 let
-  playerctl = "${pkgs.playerctl}/bin/playerctl";
-  wpctl = "${pkgs.wireplumber}/bin/wpctl";
-  brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
   window-binds = [
     "$mod, Q, killactive"
     "$mod, V, togglefloating"
@@ -28,19 +25,29 @@ let
         ]
       )
       no);
-  system-binds = [
-    ", XF86AudioPlay, exec, ${playerctl} play-pause"
-    ", XF86AudioNext, exec, ${playerctl} next"
-    ", XF86AudioPrev, exec, ${playerctl} previous"
-    ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
-    ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
-    ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    ", XF86AudioMicMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-    ", XF86MonBrightnessUp, exec, ${brightnessctl} set +10%"
-    ", XF86MonBrightnessDown, exec, ${brightnessctl} set 10%-"
-    # ", switch:Lid Switch, exec, swaylock"
-    "$mod SHIFT, Q, exec, ${pkgs.wlogout}/bin/wlogout"
-  ];
+  system-binds =
+    let
+      playerctl = "${pkgs.playerctl}/bin/playerctl";
+      wpctl = "${pkgs.wireplumber}/bin/wpctl";
+      brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+      grimblast = "${pkgs.grimblast}/bin/grimblast";
+    in
+    [
+      ", XF86AudioPlay, exec, ${playerctl} play-pause"
+      ", XF86AudioNext, exec, ${playerctl} next"
+      ", XF86AudioPrev, exec, ${playerctl} previous"
+      ", XF86AudioMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SINK@ toggle"
+      ", XF86AudioRaiseVolume, exec, ${wpctl} set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"
+      ", XF86AudioLowerVolume, exec, ${wpctl} set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+      ", XF86AudioMicMute, exec, ${wpctl} set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+      ", XF86MonBrightnessUp, exec, ${brightnessctl} set +10%"
+      ", XF86MonBrightnessDown, exec, ${brightnessctl} set 10%-"
+      # ", switch:Lid Switch, exec, swaylock"
+      "$mod SHIFT, Q, exec, ${pkgs.wlogout}/bin/wlogout"
+      ", PRINT, exec, ${grimblast} --notify --freeze copysave screen"
+      "$mod, PRINT, exec, ${grimblast} --notify --freeze copysave window"
+      "$mod SHIFT, PRINT, exec, ${grimblast} --notify --freeze copysave area"
+    ];
   app-binds = [
     "$mod, RETURN, exec, wezterm"
     "$mod, C, exec, code"

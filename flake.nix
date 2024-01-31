@@ -6,13 +6,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
+    hypr-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     spicetify.url = "github:the-argus/spicetify-nix";
     wezterm = {
       url = "github:wez/wezterm?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    fenix = {
-      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay = {
@@ -41,8 +41,8 @@
         config.allowUnfree = true;
         overlays = [
           self.overlays.default
-          inputs.fenix.overlays.default
           inputs.neovim-nightly-overlay.overlay
+          inputs.hypr-contrib.overlays.default
         ];
       };
     in

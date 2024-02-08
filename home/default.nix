@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./coding.nix ./spotify.nix ../modules/hyprland/hm.nix ];
+  imports = [ ./coding.nix ./spotify.nix ../modules/hyprland/hm.nix ./shell.nix ];
 
   home = {
     stateVersion = "23.11";

@@ -2,7 +2,6 @@
   imports = [ ../modules/direnv/home.nix ../modules/git/home.nix ];
   home.packages = with pkgs; [
     bun
-    nix-init
     gcc
     gnumake
   ];

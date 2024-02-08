@@ -8,10 +8,7 @@
       wget
       aria2
       killall
-      bat
-      zoxide
       htop
-      bottom
       nettools
       inxi
     ];
